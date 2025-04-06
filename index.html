@@ -1,1 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hayden Cho</title>
+    <style>
+      :root {
+        --primary: #3a86ff;
+        --secondary: #126919;
+        --dark: #14213d;
+        --light: #f8f9fa;
+        --accent: #e9e9f1;
+      }
 
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        background-color: var(--light);
+        color: var(--dark);
+        line-height: 1.6;
+      }
+
+      header {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: white;
+        padding: 2rem 0;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .container {
+        width: 90%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 0;
+      }
+
+      .logo {
+        font-size: 1.8rem;
+        font-weight: 700;
+      }
+
+      .logo span {
+        color: var(--accent);
+      }
+
+      .nav-links {
+        display: flex;
+        list-style: none;
+      }
+
+      .nav-links li {
+        margin-left: 2rem;
+      }
+
+      .nav-links a {
+        color: rgb(0, 0, 0);
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+      }
+
+      .nav-links a:hover {
+        color: var(--accent);
+      }
+
+      .hero {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 4rem 0;
+      }
+
+      .hero h1 {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+      }
+
+      .hero p {
+        font-size: 1.2rem;
+        max-width: 600px;
+        margin-bottom: 2rem;
+      }
+
+      .btn {
+        display: inline-block;
+        background: var(--accent);
+        color: rgb(3, 3, 3);
+        padding: 0.8rem 1.8rem;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+      }
+
+      .btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .section {
+        padding: 5rem 0;
+      }
+
+      .section-title {
+        text-align: center;
+        margin-bottom: 3rem;
+        font-size: 2.2rem;
+      }
+
+      .section-title span {
+        color: var(--primary);
+      }
+
+      .about {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+      }
+
+      .about-img {
+        flex: 1;
+        text-align: center;
+      }
+
+      .profile-img {
+        width: 300px;
+        height: 300px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 5px solid white;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .about-content {
+        flex: 2;
+      }
+
+      .skills {
+        margin-top: 2rem;
+      }
+
+      .skill-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+
+      .skill-tag {
+        background-color: var(--dark);
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        font-size: 0.9rem;
+      }
+
+      .projects {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 2rem;
+      }
+
+      .project-card {
+        background-color: white;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+      }
+
+      .project-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+      }
+
+      .project-img {
+        height: 200px;
+        width: 100%;
+        background-color: #ddd;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 3rem;
+        color: #888;
+      }
+
+      .project-content {
+        padding: 1.5rem;
+      }
+
+      .project-title {
+        font-size: 1.3rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .project-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin: 1rem 0;
+      }
+
+      .project-tag {
+        background-color: #e9ecef;
+        color: var(--dark);
+        padding: 0.3rem 0.8rem;
+        border-radius: 20px;
+        font-size: 0.8rem;
+      }
+
+      .project-links {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+
+      .project-links a {
+        color: var(--primary);
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+      }
+
+      .project-links a:hover {
+        color: var(--secondary);
+      }
+
+      .contact-form {
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .form-group {
+        margin-bottom: 1.5rem;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+      }
+
+      .form-group input,
+      .form-group textarea {
+        width: 100%;
+        padding: 0.8rem;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 1rem;
+      }
+
+      .form-group textarea {
+        min-height: 150px;
+      }
+
+      footer {
+        background-color: var(--dark);
+        color: white;
+        padding: 2rem 0;
+        text-align: center;
+      }
+
+      .social-links {
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+        margin: 1.5rem 0;
+      }
+
+      .social-links a {
+        color: white;
+        font-size: 1.5rem;
+        transition: all 0.3s ease;
+      }
+
+      .social-links a:hover {
+        color: var(--accent);
+      }
+
+      @media (max-width: 768px) {
+        .about {
+          flex-direction: column;
+        }
+
+        .hero h1 {
+          font-size: 2.5rem;
+        }
+
+        .nav-links {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <nav>
+          <div class="logo">Hayden<span> Cho</span></div>
+          <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="extras.html">Extra</a></li>
+            <li><a href="TECH RESUME SPRING 2025.docx-2.pdf" class="btn">Resume</a></li>
+          </ul>
+        </nav>
+
+        <div class="hero">
+          <h1>Hi, I'm <span style="color: var(--accent)">Hayden Cho</span></h1>
+          <p>
+            Chill guy who likes to eat food, watch football, and play
+            basketball.
+          </p>
+          <a href="#projects" class="btn">View My Work</a>
+        </div>
+      </div>
+    </header>
+
+    <section id="about" class="section">
+      <div class="container">
+        <h2 class="section-title">About <span>Me</span></h2>
+        <div class="about">
+          <div class="about-img">
+            <img src="IMG_8289.jpg" alt="Profile" class="profile-img" />
+          </div>
+          <div class="about-content">
+            <p>
+              I'm a passionate computer scientist and software developer with a
+              focus on AI/Machine Learning tools. Currently working on a Time
+              Series Forecasting project in python.
+            </p>
+            <p>
+              Currently pursuing Computer Science at California State
+              University, Fresno, I'm constantly exploring new technologies and
+              approaches to enhance my skills and deliver high-quality software.
+            </p>
+
+            <div class="skills">
+              <h3>Skills & Technologies</h3>
+              <div class="skill-list">
+                <span class="skill-tag">C++</span>
+                <span class="skill-tag">Python</span>
+                <span class="skill-tag">HTML</span>
+                <span class="skill-tag">2-3 Defense</span>
+                <span class="skill-tag">Pick and Roll Offense</span>
+                <span class="skill-tag">Korean Food</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="section" style="background-color: #f1f3f5">
+      <div class="container">
+        <h2 class="section-title">My <span>Projects</span></h2>
+        <div class="projects">
+          <div class="project-card">
+            <div class="project-img">
+              <img src="IMG_0915.PNG" alt="Project 1" />
+            </div>
+            <div class="project-content">
+              <h3 class="project-title">Battleship Game</h3>
+              <p>
+                Built a two-player, text-based Battleship game with
+                multithreading in C++. Managed concurrent gameplay using threads
+                and mutexes; implemented dynamic board updates and random ship
+                placement.
+              </p>
+              <div class="project-tags">
+                <span class="project-tag">C++</span>
+                <span class="project-tag">Multi-Threading</span>
+              </div>
+              <div class="project-links">
+                <a
+                  href="https://github.com/thetrollhero/games-C-/blob/main/battleship.cpp"
+                  >View Project</a
+                >
+                <a
+                  href="https://github.com/thetrollhero/games-C-/blob/main/battleship.cpp"
+                  >GitHub</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-img">
+              <img src="IMG_0916.JPG" alt="Project 2" />
+            </div>
+            s
+            <div class="project-content">
+              <h3 class="project-title">Checkers</h3>
+              <p>
+                Developed a terminal-based checkers game with logic prioritizing
+                captures and strategic moves. Implemented an 8x8 dynamic board,
+                real-time updates, and user-friendly controls.
+              </p>
+              <div class="project-tags">
+                <span class="project-tag">C++</span>
+              </div>
+              <div class="project-links">
+                <a
+                  href="https://github.com/thetrollhero/games-C-/blob/main/checkers.cpp"
+                  >View Project</a
+                >
+                <a
+                  href="https://github.com/thetrollhero/games-C-/blob/main/checkers.cpp"
+                  >GitHub</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <div class="project-img">
+              <img src="IMG_4680.jpg" alt="Project 3" />
+            </div>
+            <div class="project-content">
+              <h3 class="project-title">Keyboard Keystroke Logger</h3>
+              <p>A C++ Program that logs your keystrokes and records them to a txt file</p>
+              <div class="project-tags">
+                <span class="project-tag">C++</span>
+                <span class="project-tag">Windows API(GetAsyncKeyState)</span>
+                <span class="project-tag">ToAscii</span>
+                <span class="project-tag">GetKeyboardState</span>
+              </div>
+              <div class="project-links">
+                <a href="https://github.com/thetrollhero/Keylogger-">View Project</a>
+                <a href="https://github.com/thetrollhero/Keylogger-">GitHub</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <div class="container">
+        <h2 class="section-title">Get In <span>Touch</span></h2>
+        <div class="contact-form">
+          <form>
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" id="name" placeholder="Your Name" />
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" placeholder="Your Email" />
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" placeholder="Your Message"></textarea>
+            </div>
+            <!--<button type="submit" class="btn">Send Message</button>-->
+            <p><a href="mailto:chohayden107@gmail.com">Send email</a></p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container">
+        <div class="logo">Hayden<span> Cho</span></div>
+        <p>Eating all the food, one buffet line at a time.</p>
+        <div class="social-links">
+          <a href="https://github.com/chohayden">GitHub</a>
+          <a href="https://www.linkedin.com/in/hayden-cho/">LinkedIn</a>
+        </div>
+        <p>© 2025 Hayden Taemin Cho. All rights reserved.</p>
+      </div>
+    </footer>
+  </body>
+</html>
