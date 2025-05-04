@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hayden's Art Gallery</title>
+    <style>
+      :root {
+        --primary: #3a86ff;
+        --secondary: #126919;
+        --dark: #14213d;
+        --light: #f8f9fa;
+        --accent: #e9e9f1;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        background-color: var(--light);
+        color: var(--dark);
+        line-height: 1.6;
+      }
+
+      .section {
+        padding: 5rem 0;
+      }
+
+      .container {
+        width: 90%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      .section-title {
+        text-align: center;
+        margin-bottom: 3rem;
+        font-size: 2.2rem;
+      }
+
+      .section-title span {
+        color: var(--primary);
+      }
+
+      /* Gallery Styles */
+      .gallery-container {
+        margin-top: 2rem;
+      }
+
+      .gallery {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+      }
+
+      .gallery-item {
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+        height: 300px;
+        border-radius: 5px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+      }
+
+      .gallery-item:hover {
+        transform: translateY(-10px);
+      }
+
+      .gallery-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .gallery-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.7);
+        color: white;
+        padding: 1rem;
+        transform: translateY(100%);
+        transition: transform 0.3s ease;
+      }
+
+      .gallery-item:hover .gallery-overlay {
+        transform: translateY(0);
+      }
+
+      .gallery-title {
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+      }
+
+      /* Modal Styles */
+      .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.9);
+        z-index: 1000;
+        overflow: hidden;
+      }
+
+      .modal-content {
+        position: relative;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .modal-img {
+        max-width: 90%;
+        max-height: 90%;
+        object-fit: contain;
+      }
+
+      .modal-close {
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        color: white;
+        font-size: 40px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+
+      .modal-nav {
+        position: absolute;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        top: 50%;
+        transform: translateY(-50%);
+        padding: 0 30px;
+      }
+
+      .modal-nav button {
+        background: rgba(255, 255, 255, 0.2);
+        color: white;
+        border: none;
+        font-size: 30px;
+        padding: 10px 15px;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: background 0.3s ease;
+      }
+
+      .modal-nav button:hover {
+        background: rgba(255, 255, 255, 0.4);
+      }
+
+      /* Back Link */
+      .back-link {
+        text-align: center;
+        margin-top: 3rem;
+      }
+
+      .back-link a {
+        color: var(--dark);
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .back-link a:hover {
+        color: var(--primary);
+      }
+
+      .back-link a:before {
+        content: "←";
+        font-size: 1.2rem;
+      }
+
+      /* Responsive Styles */
+      @media (max-width: 992px) {
+        .gallery {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 576px) {
+        .gallery {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section id="art-gallery" class="section">
+      <div class="container">
+        <h2 class="section-title">My <span>Artwork</span></h2>
+        
+        <div class="gallery-container">
+          <div class="gallery">
+            <!-- Gallery items - replace with your actual art -->
+            <div class="gallery-item">
+              <img src="/api/placeholder/400/320" alt="Artwork 1" class="gallery-img">
+              <div class="gallery-overlay">
+                <h3 class="gallery-title">Abstract Composition #1</h3>
+                <p>Mixed media on canvas, 2024</p>
+              </div>
+            </div>
+            <div class="gallery-item">
+              <img src="/api/placeholder/400/320" alt="Artwork 2" class="gallery-img">
+              <div class="gallery-overlay">
+                <h3 class="gallery-title">Urban Landscape</h3>
+                <p>Digital art, 2023</p>
+              </div>
+            </div>
+            <div class="gallery-item">
+              <img src="/api/placeholder/400/320" alt="Artwork 3" class="gallery-img">
+              <div class="gallery-overlay">
+                <h3 class="gallery-title">Portrait Study</h3>
+                <p>Charcoal on paper, 2024</p>
+              </div>
+            </div>
+            <div class="gallery-item">
+              <img src="/api/placeholder/400/320" alt="Artwork 4" class="gallery-img">
+              <div class="gallery-overlay">
+                <h3 class="gallery-title">Color Exploration</h3>
+                <p>Acrylic on canvas, 2023</p>
+              </div>
+            </div>
+            <div class="gallery-item">
+              <img src="/api/placeholder/400/320" alt="Artwork 5" class="gallery-img">
+              <div class="gallery-overlay">
+                <h3 class="gallery-title">Nature Series #3</h3>
+                <p>Watercolor, 2024</p>
+              </div>
+            </div>
+            <div class="gallery-item">
+              <img src="/api/placeholder/400/320" alt="Artwork 6" class="gallery-img">
+              <div class="gallery-overlay">
+                <h3 class="gallery-title">Geometric Patterns</h3>
+                <p>Digital illustration, 2023</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Back to main site link -->
+        <div class="back-link">
+          <a href="index.html">Back to Main Page</a>
+        </div>
+      </div>
+
+      <!-- Modal for fullscreen gallery view -->
+      <div id="gallery-modal" class="modal">
+        <span class="modal-close">&times;</span>
+        <div class="modal-content">
+          <img id="modal-img" class="modal-img" src="" alt="Fullscreen artwork">
+          <div class="modal-nav">
+            <button id="prev-btn">&lt;</button>
+            <button id="next-btn">&gt;</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      // Gallery Modal Functionality
+      const galleryItems = document.querySelectorAll('.gallery-item');
+      const modal = document.getElementById('gallery-modal');
+      const modalImg = document.getElementById('modal-img');
+      const closeBtn = document.querySelector('.modal-close');
+      const prevBtn = document.getElementById('prev-btn');
+      const nextBtn = document.getElementById('next-btn');
+      
+      let currentIndex = 0;
+
+      // Open modal when gallery item is clicked
+      galleryItems.forEach((item, index) => {
+        item.addEventListener('click', () => {
+          const imgSrc = item.querySelector('.gallery-img').src;
+          modalImg.src = imgSrc;
+          modal.style.display = 'block';
+          currentIndex = index;
+        });
+      });
+
+      // Close modal
+      closeBtn.addEventListener('click', () => {
+        modal.style.display = 'none';
+      });
+
+      // Close modal when clicking outside the image
+      window.addEventListener('click', (event) => {
+        if (event.target === modal) {
+          modal.style.display = 'none';
+        }
+      });
+
+      // Navigate to previous image
+      prevBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex - 1 + galleryItems.length) % galleryItems.length;
+        const imgSrc = galleryItems[currentIndex].querySelector('.gallery-img').src;
+        modalImg.src = imgSrc;
+      });
+
+      // Navigate to next image
+      nextBtn.addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % galleryItems.length;
+        const imgSrc = galleryItems[currentIndex].querySelector('.gallery-img').src;
+        modalImg.src = imgSrc;
+      });
+      
+      // Keyboard navigation
+      document.addEventListener('keydown', (e) => {
+        if (modal.style.display === 'block') {
+          if (e.key === 'ArrowLeft') {
+            prevBtn.click();
+          } else if (e.key === 'ArrowRight') {
+            nextBtn.click();
+          } else if (e.key === 'Escape') {
+            closeBtn.click();
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
