@@ -290,30 +290,44 @@
           modalImg.src = imgSrc;
           modal.style.display = 'block';
           currentIndex = index;
+          
+          // Prevent scrolling when modal is open
+          document.body.style.overflow = 'hidden';
         });
       });
 
-      // Close modal
-      closeBtn.addEventListener('click', () => {
+      // Close modal function
+      function closeModal() {
         modal.style.display = 'none';
+        // Re-enable scrolling
+        document.body.style.overflow = '';
+      }
+
+      // Close modal when X is clicked
+      closeBtn.addEventListener('click', (e) => {
+        e.stopPropagation(); // Prevent event bubbling
+        closeModal();
       });
 
       // Close modal when clicking outside the image
-      window.addEventListener('click', (event) => {
+      modal.addEventListener('click', (event) => {
+        // Check if the click is directly on the modal (not on its children)
         if (event.target === modal) {
-          modal.style.display = 'none';
+          closeModal();
         }
       });
 
       // Navigate to previous image
-      prevBtn.addEventListener('click', () => {
+      prevBtn.addEventListener('click', (e) => {
+        e.stopPropagation(); // Prevent triggering the modal close
         currentIndex = (currentIndex - 1 + galleryItems.length) % galleryItems.length;
         const imgSrc = galleryItems[currentIndex].querySelector('.gallery-img').src;
         modalImg.src = imgSrc;
       });
 
       // Navigate to next image
-      nextBtn.addEventListener('click', () => {
+      nextBtn.addEventListener('click', (e) => {
+        e.stopPropagation(); // Prevent triggering the modal close
         currentIndex = (currentIndex + 1) % galleryItems.length;
         const imgSrc = galleryItems[currentIndex].querySelector('.gallery-img').src;
         modalImg.src = imgSrc;
@@ -327,9 +341,14 @@
           } else if (e.key === 'ArrowRight') {
             nextBtn.click();
           } else if (e.key === 'Escape') {
-            closeBtn.click();
+            closeModal();
           }
         }
+      });
+      
+      // Prevent image click from closing modal
+      modalImg.addEventListener('click', (e) => {
+        e.stopPropagation();
       });
     </script>
   </body>
